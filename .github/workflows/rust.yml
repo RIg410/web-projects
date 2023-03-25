@@ -20,9 +20,7 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - uses: actions-rs/install@v0.1
@@ -42,6 +40,7 @@ jobs:
     - name: unpack
       run: cp -r dist/* .
   deploy:
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
