@@ -20,5 +20,15 @@ jobs:
       with:
         crate: dioxus-cli
         version: latest
+    - name: Install Rust toolchain
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
+        components: rustfmt, clippy
+        target: wasm32-unknown-unknown
+        override: true
     - name: Build
       run: dioxus build
+    - name: unpack
+      run: cp -r dist/* .
